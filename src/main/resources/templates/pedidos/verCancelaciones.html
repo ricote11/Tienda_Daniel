@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="/fragmentos/datos::datos">
+
+</head>
+
+
+<body>
+
+	<section th:replace="/fragmentos/menu::menu"></section>
+	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+
+
+	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
+		<h2 class="display-1">Lista de pedidos completa</h2>
+		<table class="table table-sm table-dark">
+			<div class="table-responsive">
+				<table class="table align-middle">
+					<thead>
+						<tr>
+
+							<th>Id_usuario</th>
+							<th>Fecha</th>
+							<th>Metodo de pago</th>
+							<th>Estado</th>
+							<th>Numero de la factura</th>
+							<th>Precio total</th>
+							<th></th>
+							
+
+
+
+
+						</tr>
+					<tbody th:each="pedidos : ${pedidos}">
+
+
+						<td th:text="${pedidos.usuario}"></td>
+						<td th:text="${pedidos.fecha}"></td>
+						<td th:text="${pedidos.metodo_pago}"></td>
+						<td th:text="${pedidos.estado}"></td>
+						<td th:text="${pedidos.num_factura}"></td>
+						<td th:text="${pedidos.total}"></td>
+						
+						<td>
+							<div   class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+									th:href="@{/pedidos/confirmarCanc/}+${pedidos.id}">Cancelar pedido<i></i></a></div>
+						</td>
+
+
+
+
+
+
+						</tr>
+					</tbody>
+					</thead>
+				</table>
+			</div>
+		</table>
+	</div>
+
+	<!-- JavaScript files-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/lightbox2/js/lightbox.min.js"></script>
+	<script src="vendor/nouislider/nouislider.min.js"></script>
+	<script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script src="vendor/owl.carousel2/owl.carousel.min.js"></script>
+	<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script src="js/front.js"></script>
+	<script>
+		// ------------------------------------------------------- //
+		//   Inject SVG Sprite - 
+		//   see more here 
+		//   https://css-tricks.com/ajaxing-svg-sprite/
+		// ------------------------------------------------------ //
+		function injectSvgSprite(path) {
+
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", path, true);
+			ajax.send();
+			ajax.onload = function (e) {
+				var div = document.createElement("div");
+				div.className = 'd-none';
+				div.innerHTML = ajax.responseText;
+				document.body.insertBefore(div, document.body.childNodes[0]);
+			}
+		}
+		// this is set to BootstrapTemple website as you cannot 
+		// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+		// while using file:// protocol
+		// pls don't forget to change to your domain :)
+		injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+	</script>
+	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	</div>
+	<div id="pie">
+		<footer th:replace="/fragmentos/footer::pie"></footer>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+
+<head th:replace="/fragmentos/datos::datos">
+	
+</head >
+
+
+<body>
+	<section th:replace="/fragmentos/menu::menu"></section>
+	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+
+	<div class="page-holder">
+		<div class="container">
+
+			<!-- navbar-->
+
+			<!-- BILLING ADDRESS-->
+			<h2 class="h5 text-uppercase mb-4">Formulario de Login</h2>
+			<div class="row">
+				<div class="col-lg-8">
+					<form th:action="@{/usuarios/editado}" th:object="${usuario}" method="post">
+						<div class="row">
+
+							
+
+							
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="clave">Password</label>
+								<input type="password" class="form-control form-control-lg" th:field="*{clave}" id="clave" name="clave" 
+									placeholder="Enter your password">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="clave">Nombre</label>
+								<input class="form-control form-control-lg" id="clave" th:field="*{nombre}" name="nombre" type="text"
+									placeholder="Enter your name">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="apellido1">Primer Apellido</label>
+								<input class="form-control form-control-lg" id="apellido1" th:field="*{apellido1}" name="apellido1" type="text"
+									placeholder="Enter your firt surname">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="apellido2">Segundo Apellido</label>
+								<input class="form-control form-control-lg" id="apellido2" th:field="*{apellido2}" name="apellido2" type="text"
+									placeholder="Enter your second surname">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="direccion">Direccion</label>
+								<input class="form-control form-control-lg" id="direccion" th:field="*{direccion}" name="direccion" type="text"
+									placeholder="Enter your adress">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="provincia">Provincia</label>
+								<input class="form-control form-control-lg" id="provincia" th:field="*{provincia}" name="provincia" type="text"
+									placeholder="Enter your adress">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="localidad">Localidad</label>
+								<input class="form-control form-control-lg" id="localidad" th:field="*{localidad}" name="localidad" type="text"
+									placeholder="Enter your adress">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="telefono">Telefono</label>
+								<input class="form-control form-control-lg" id="telefono" th:field="*{telefono}" name="telefono" type="text"
+									placeholder="Enter your adress">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="dni"></label>
+								<input class="form-control form-control-lg" id="dni" th:field="*{dni}" name="dni" type="hidden"
+									placeholder="Enter your adress">
+							</div>
+							<div class="col-lg-6 form-group">
+								<input type="hidden" class="form-control" id="id_rol" th:field="*{id_rol}" value="3" style="margin: 5px;"
+									name="id_rol" placeholder="Selecciona el rol" />
+							</div>
+							<div class="col-lg-6 form-group">
+								<input type="hidden" class="form-control" id="id" value="3" th:field="*{id}" style="margin: 5px;"
+									name="id" placeholder="Selecciona el rol" />
+							</div>
+							<div class="col-lg-6 form-group">
+								<label  class="text-small text-uppercase" for="email"></label >
+								<input type="hidden" class="form-control form-control-lg" th:field="*{email}" id="firstName" name="email"
+									placeholder="Enter your first email">
+							</div>
+							<input type="submit" class="w-100 btn btn-lg btn-primary" name="btnSubmit"
+								value="Editar" />
+
+					</form>
+
+
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="vendor/lightbox2/js/lightbox.min.js"></script>
+		<script src="vendor/nouislider/nouislider.min.js"></script>
+		<script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+		<script src="vendor/owl.carousel2/owl.carousel.min.js"></script>
+		<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+		<script src="js/front.js"></script>
+		<script>
+			// ------------------------------------------------------- //
+			//   Inject SVG Sprite - 
+			//   see more here 
+			//   https://css-tricks.com/ajaxing-svg-sprite/
+			// ------------------------------------------------------ //
+			function injectSvgSprite(path) {
+
+				var ajax = new XMLHttpRequest();
+				ajax.open("GET", path, true);
+				ajax.send();
+				ajax.onload = function (e) {
+					var div = document.createElement("div");
+					div.className = 'd-none';
+					div.innerHTML = ajax.responseText;
+					document.body.insertBefore(div, document.body.childNodes[0]);
+				}
+			}
+			// this is set to BootstrapTemple website as you cannot 
+			// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+			// while using file:// protocol
+			// pls don't forget to change to your domain :)
+			injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+		</script>
+		<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+			integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	</div>
+	<div id="pie">
+		<footer th:replace="/fragmentos/footer::pie"></footer>
+	</div>
+</body>
+
+</html>

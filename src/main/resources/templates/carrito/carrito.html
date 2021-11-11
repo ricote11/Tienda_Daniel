@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="/fragmentos/datos::datos">
+	
+</head >
+
+
+<body>
+	<section th:replace="/fragmentos/menu::menu"></section>
+	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+
+	<div class="container">
+
+		<h2 class="h5 text-uppercase mb-4">Shopping cart</h2>
+		<div class="row">
+			<div class="col-lg-8 mb-4 mb-lg-0">
+				<!-- CART TABLE-->
+				<div class="table-responsive mb-4">
+					<table class="table">
+						<thead class="bg-light">
+							<tr>
+								<th class="border-0" scope="col"> <strong
+										class="text-small text-uppercase">Product</strong></th>
+								<th class="border-0" scope="col"> <strong
+										class="text-small text-uppercase">Nombre</strong></th>
+								<th class="border-0" scope="col"> <strong
+										class="text-small text-uppercase">Quantity</strong></th>
+								<th class="border-0" scope="col"> <strong
+										class="text-small text-uppercase">Total</strong></th>
+								<th class="border-0" scope="col"> </th>
+								<th class="align-middle border-0"><a class="reset-anchor" th:href="@{/carrito/vaciar}"><i
+											class="fas fa-trash-alt small text-muted"></i></a></th>
+							</tr>
+						</thead>
+						<tbody th:each="carrito : ${session.carrito}">
+							<tr>
+								<th class="pl-0 border-0" scope="row">
+									<div class="media align-items-center"><a
+											class="reset-anchor d-block animsition-link" ><img th:src="${carrito.imagen}"
+												 alt="..." width="70" /></a>
+										<div class="media-body ml-3"><strong class="h6">
+												<p class="reset-anchor animsition-link"  ></p>
+											</strong></div>
+									</div>
+								</th>
+								<td class="align-middle border-0">
+									<p class="mb-0 small" th:text="${carrito.nombre}" ></p>
+								</td>
+								<td class="align-middle border-0">
+									<div class="border d-flex align-items-center justify-content-between px-3"><span
+											class="small text-uppercase text-gray headings-font-family">Quantity</span>
+										<div class="quantity">
+											
+											<input class="form-control form-control-sm border-0 shadow-0 p-0"
+												type="text"  th:value="${carrito.unidades}" disabled/>
+											<a class="inc-btn p-0" th:href="@{/carrito/carrito/}+${carrito.producto}"><i class="fas fa-caret-right"></i></a>
+										</div>
+									</div>
+								</td>
+								<td class="align-middle border-0">
+									<p class="mb-0 small"  th:text="${carrito.total}"></p>
+								</td>
+								
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+				<!-- CART NAV-->
+				<div class="bg-light px-4 py-3">
+					<div class="row align-items-center text-center">
+						<div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm"
+								th:href="@{/Tienda_Daniel_Ricote_Mompo}"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a>
+						</div>
+						<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+								href="/carrito/comprar">Procceed to checkout<i
+									class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
+					</div>
+				</div>
+			</div>
+			<!-- ORDER TOTAL-->
+			<div class="col-lg-4">
+				<div class="card border-0 rounded-0 p-lg-4 bg-light">
+					<div class="card-body">
+						<h5 class="text-uppercase mb-4">Cart total</h5>
+						<ul class="list-unstyled mb-0">
+							
+							<li class="d-flex align-items-center justify-content-between mb-4"><strong
+									class="text-uppercase small font-weight-bold">Total</strong><span th:text="${session.total}"> </span ></li>
+							
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		</section>
+	</div>
+	<div id="pie">
+		<footer th:replace="/fragmentos/footer::pie"></footer>
+	</div>
+	<!-- JavaScript files-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/lightbox2/js/lightbox.min.js"></script>
+	<script src="vendor/nouislider/nouislider.min.js"></script>
+	<script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script src="vendor/owl.carousel2/owl.carousel.min.js"></script>
+	<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script src="js/front.js"></script>
+	<script>
+		// ------------------------------------------------------- //
+		//   Inject SVG Sprite - 
+		//   see more here 
+		//   https://css-tricks.com/ajaxing-svg-sprite/
+		// ------------------------------------------------------ //
+		function injectSvgSprite(path) {
+
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", path, true);
+			ajax.send();
+			ajax.onload = function (e) {
+				var div = document.createElement("div");
+				div.className = 'd-none';
+				div.innerHTML = ajax.responseText;
+				document.body.insertBefore(div, document.body.childNodes[0]);
+			}
+		}
+		// this is set to BootstrapTemple website as you cannot 
+		// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+		// while using file:// protocol
+		// pls don't forget to change to your domain :)
+		injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+	</script>
+	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	</div>
+</body>
+
+</html>

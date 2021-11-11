@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head >
+
+<body>
+
+	
+
+				<form th:action="@{/login/log}" th:object="${usuarios}" method="post">
+
+
+							<input id="firstName" type="email" name="email" placeholder="Enter your first email"/>
+<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Errores</span>
+							<input id="clave" name="clave" type="password"	placeholder="Enter your password"/>
+		
+						<input type="submit" class="w-100 btn btn-lg btn-primary" name="btnSubmit" value="Entrar" />
+					
+					
+				</form>
+
+				 
+	
+</body>
+
+</html>
