@@ -17,13 +17,11 @@ public class Productos implements Serializable {
 	@GeneratedValue
 	private int id;
 	
-	@NotBlank(message = "campo obligatorio")
+
 	private int id_categoria;
 	
-	@NotBlank(message = "campo obligatorio")
 	private String nombre;
-	
-	@NotBlank(message = "campo obligatorio")
+
 	private String descripcion;
 	private double precio;
 	private Integer stock;
@@ -31,9 +29,10 @@ public class Productos implements Serializable {
 	private Date fecha_baja;
 	private float impuesto;
 	private String imagen;
+	private int id_proveedor;
 
 	public Productos(Integer id, Integer id_categoria, String nombre, String descripcion, double precio, Integer stock,
-			Date fecha_alta, Date fecha_baja, float impuesto, String imagen) {
+			Date fecha_alta, Date fecha_baja, float impuesto, String imagen, int id_proveedor) {
 		super();
 		this.id = id;
 		this.id_categoria = id_categoria;
@@ -45,6 +44,7 @@ public class Productos implements Serializable {
 		this.fecha_baja = fecha_baja;
 		this.impuesto = impuesto;
 		this.imagen = imagen;
+		this.id_proveedor = id_proveedor;
 	}
 	
 
@@ -61,6 +61,16 @@ public class Productos implements Serializable {
 
 	public Productos() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public int getId_proveedor() {
+		return id_proveedor;
+	}
+
+
+	public void setId_proveedores(int id_proveedor) {
+		this.id_proveedor = id_proveedor;
 	}
 
 

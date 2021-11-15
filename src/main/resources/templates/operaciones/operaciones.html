@@ -7,37 +7,59 @@
 
 <body>
 	<section th:replace="/fragmentos/menu::menu"></section>
-	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+	<header th:replace="/fragmentos/cabecera::cabecera"></header>	
+	<h5 class="text-uppercase mb-4" id="operaciones">Listados</h5>
 	<p  >
 		<a class="referencias"  href="/productos/verProductosLista" >Lista de productos</a>
 	</p  >
 	<p >
-		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuarios" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de usuarios </a>
+		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuariosClientes" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de Clientes </a>
 	</p >
-	<p>
-		<a class="referencias" data-bs-toggle="collapse" href="/pedidos/verListaPedidos" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de pedidos </a>
+		<p th:if="${session.id == 1}" >
+		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuariosEmpleados" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de Empleados </a>
+	</p  >
+		<p  th:if="${session.email == 'admin@admin.es'}">
+		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuariosAdmin" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de Admins </a>
+	</p >
+
+	<p th:if="${session.id == 1}">
+		<a class="referencias" data-bs-toggle="collapse" href="/configuracion/verConfiguraciones" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista configuraciones </a>
 	</p>
+	<h5 class="text-uppercase mb-4" id="operaciones">Altas</h5>
 	<p>
 		<a class="referencias" data-bs-toggle="collapse" href="/productos/altaProducto" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Nuevo producto </a>
+			aria-expanded="false" aria-controls="multiCollapseExample1">Alta producto </a>
 	</p>
 	<p>
 		<a class="referencias" data-bs-toggle="collapse" href="/usuarios/altaUsuario" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Nuevo usuario </a>
-	</p>
-	<p th:if="${session.id == 1}">
-		<a class="referencias" data-bs-toggle="collapse" href="/pedidos/verCancelaciones" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Cancelar pedidos </a>
+			aria-expanded="false" aria-controls="multiCollapseExample1">Alta usuario </a>
 	</p>
 		<p th:if="${session.id == 1}">
-		<a class="referencias" data-bs-toggle="collapse" href="/configuracion/verConfiguraciones" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Lista configuraciones </a>
+		<a class="referencias" data-bs-toggle="collapse" href="/productos/altaCategoria" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Alta categoria </a>
 	</p>
 		<p th:if="${session.id == 1}">
 		<a class="referencias" data-bs-toggle="collapse" href="/configuracion/verAltaCon" role="button"
 			aria-expanded="false" aria-controls="multiCollapseExample1">Alta configuraciones </a>
+	</p>
+	<p th:if="${session.id == 1}">
+	<h5 class="text-uppercase mb-4" id="operaciones">Gestión de pedidos</h5>
+		<a class="referencias" data-bs-toggle="collapse" href="/pedidos/verCancelaciones" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Cancelar pedidos </a>
+	</p>
+		<p>
+		<a class="referencias" data-bs-toggle="collapse" href="/pedidos/verListaPedidos" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Enviar pedidos </a>
+	</p>
+		
+	<h5 class="text-uppercase mb-4" id="operaciones">Excel de productos</h5>
+			<p >
+		<a class="referencias" data-bs-toggle="collapse" href="/productos/excel" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Excel </a>
 	</p>
 
 

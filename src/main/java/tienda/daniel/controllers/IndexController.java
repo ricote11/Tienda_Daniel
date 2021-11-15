@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tienda.daniel.models.Categorias;
 import tienda.daniel.models.Detalles_pedido;
 import tienda.daniel.models.Productos;
+import tienda.daniel.models.Usuarios;
 import tienda.daniel.services.CategoriasService;
 import tienda.daniel.services.ProductosServices;
+import tienda.daniel.services.UsuariosServices;
+import tienda.daniel.utils.HiloEnviado;
 
 @Controller
 @RequestMapping("")
@@ -38,10 +42,17 @@ public class IndexController {
 	@Autowired
 	private CategoriasService serCategorias;
 	
+	@Autowired
+	private UsuariosServices serUsuarios;
+	
+	/*@Autowired 
+	HiloEnviado hilo;
+	*/
 
 	private ArrayList<Productos> productos = new ArrayList<Productos>();
 	protected static String rutaBase = "/";
 	protected static boolean carritoBool = true;
+	protected static boolean hiloBool = true;
 
 	private void iniciaCarrito(HttpSession sesion) {
 		//ArrayList<ProductosPedido> carrito = new ArrayList<ProductosPedido>();
@@ -54,6 +65,29 @@ public class IndexController {
 	
 	@GetMapping("")
 	public String goIndex(Model model,HttpSession sesion) {
+	
+	
+	
+		Usuarios usuariosApp = (Usuarios) serUsuarios.getUserByEmail("admin@admin.es");
+		
+		if(usuariosApp==null)
+		{
+
+			Usuarios user = new Usuarios();
+			user.setEmail("admin@admin.es");
+			Base64 base64 = new Base64();
+			String clave = "admin";
+			String encriptada = new String(base64.encode(clave.getBytes()));
+			user.setClave(encriptada);
+			user.setNombre("admin");
+			user.setApellido1("admin");
+			user.setId_rol(1);
+		
+			//usuariosApp.add(user);
+			serUsuarios.guardarUsuario(user);
+			System.out.println("insertado");
+			
+		}
 		List<Categorias> categorias = serCategorias.getListaCategorias();
 		sesion.setAttribute("categorias", categorias);
 		//Usuarios user = (Usuarios)model.asMap().get("user");
@@ -149,5 +183,6 @@ public class IndexController {
 		
 	}
 	
+
 
 }

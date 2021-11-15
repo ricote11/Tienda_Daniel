@@ -8,10 +8,21 @@
 }
 .referencias{
 	
-	margin-left: 800px;
-	height :50px;
-   	text-align: center;
-    width: 800px;
+	display:flex;
+	
+	justify-content: center;
+	
     color:black;
 
+}
+#busqueda{
+	
+	    color:black;
+
+}
+#operaciones{
+	
+	display:flex;
+	
+	justify-content: center;
 }

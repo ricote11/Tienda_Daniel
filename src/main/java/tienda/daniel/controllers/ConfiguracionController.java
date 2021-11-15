@@ -36,14 +36,14 @@ public class ConfiguracionController {
 	}
 	
 	@PostMapping("/add")
-	public String nuevoProducto(Model model, @ModelAttribute Configuracion configuracion) {
+	public String nuevaCon(Model model, @ModelAttribute Configuracion configuracion) {
 		configuracionSer.guardarConfiguracion(configuracion);
 			
 		return "redirect:/configuracion/verConfiguraciones";
 		
 	}
 	@GetMapping("/borrar//{id}")
-	public String borrarUsuario(Model model, @PathVariable int id) {
+	public String borrarCon(Model model, @PathVariable int id) {
 		Configuracion con = configuracionSer.getId(id);
 
 		configuracionSer.borrarConfiguracion(con);

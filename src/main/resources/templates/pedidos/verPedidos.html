@@ -2,24 +2,24 @@
 <html>
 
 <head th:replace="/fragmentos/datos::datos">
-	
-</head >
+
+</head>
 
 
 <body>
 
 	<section th:replace="/fragmentos/menu::menu"></section>
 	<header th:replace="/fragmentos/cabecera::cabecera"></header>
-	
-	
+
+
 	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
-		<h2 class="display-1">Detalles de Productos</h2>
+		<h2 class="display-1">Detalles de Pedido</h2>
 		<table class="table table-sm table-dark">
 			<div class="table-responsive">
 				<table class="table align-middle">
 					<thead>
 						<tr>
-					
+
 							<th>Id_usuario</th>
 							<th>Fecha</th>
 							<th>Metodo de pago</th>
@@ -28,31 +28,40 @@
 							<th>Precio total</th>
 							<th></th>
 							<th></th>
-						
+
+
 
 
 						</tr>
 					<tbody th:each="pedidos : ${pedidos}">
-					
-						
-							<td th:text="${pedidos.usuario}"></td>
-							<td th:text="${pedidos.fecha}"></td>
-							<td th:text="${pedidos.metodo_pago}"></td>
-							<td th:text="${pedidos.estado}"></td>
-							<td th:text="${pedidos.num_factura}"></td>
-							<td th:text="${pedidos.total}"></td>
-							<td> <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-								th:href="@{/pedidos/verDetalles/}+${pedidos.id}">Ver detalles<i
-									></i></a></div></td>
-									<td th:if="${pedidos.estado == 'Pendiente'}"> <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-								th:href="@{/pedidos/cancelar/}+${pedidos.id}">Solicitar cancelacion<i
-									></i></a></div></td >
-										
-						
-							
-							
 
-						</tr >
+
+						<td th:text="${pedidos.usuario}"></td>
+						<td th:text="${pedidos.fecha}"></td>
+						<td th:text="${pedidos.metodo_pago}"></td>
+						<td th:text="${pedidos.estado}"></td>
+						<td th:text="${pedidos.num_factura}"></td>
+						<td th:text="${pedidos.total}"></td>
+						<td>
+							<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+									th:href="@{/pedidos/verDetalles/}+${pedidos.id}">Ver detalles<i></i></a></div>
+						</td>
+						<td th:if="${pedidos.estado == 'Pendiente'}">
+							<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+									th:href="@{/pedidos/cancelar/}+${pedidos.id}">Solicitar cancelacion<i></i></a></div>
+						</td>
+
+						<td th:if="${pedidos.estado == 'Enviado'}">
+							<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+									th:href="@{/pedidos/generarPdf/}+${pedidos.id}">Descargar PDF<i></i></a></div>
+						</td>
+
+
+
+
+
+
+						</tr>
 					</tbody>
 					</thead>
 				</table>

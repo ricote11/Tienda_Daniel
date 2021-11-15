@@ -68,6 +68,8 @@ public class CarritoController {
 						detalles_pedido.setUnidades(cantidad);
 						detalles_pedido.setTotal(precioTotal);
 						carrito = true;
+						/*int stock = producto.getStock();
+						producto.setStock(stock - 1);*/
 						logger.info("Producto sumado al carrito");
 						listado.add(producto);
 
@@ -82,6 +84,7 @@ public class CarritoController {
 
 				Detalles_pedido detalles = new Detalles_pedido(1, producto.getId(), precio, 1, producto.getImpuesto(),
 						producto.getPrecio(), producto.getImagen(), producto.getNombre());
+				
 				carritoDetalles.add(detalles);
 
 			}

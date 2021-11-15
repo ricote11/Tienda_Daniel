@@ -3,95 +3,97 @@
 
 
 <head th:replace="/fragmentos/datos::datos">
-	
-</head >
+
+</head>
 
 <body>
-<section th:replace="/fragmentos/menu::menu"></section>
+	<section th:replace="/fragmentos/menu::menu"></section>
 	<header th:replace="/fragmentos/cabecera::cabecera"></header>
-
-	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
-		<h2 class="display-1">Detalles de Productos</h2>
-		<table class="table table-sm table-dark">
-			<div class="table-responsive">
-				<table class="table align-middle">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Id Categoria</th>
-							<th>Nombre</th>
-							<th>Descripcion</th>
-							<th>Precio</th>
-							<th>Stock</th>
-							<th>Fecha alta</th>
-							<th>Fecha baja</th>
-							<th>Impuesto</th>
-							<th>Imagen</th>
-
-
-						</tr>
-					<tbody th:each="producto : ${producto}">
-						<tr>
-							<td th:text="${producto.id}"></td>
-							<td th:text="${producto.id_categoria}"></td>
-							<td th:text="${producto.nombre}"></td>
-							<td th:text="${producto.descripcion}"></td>
-							<td th:text="${producto.precio}"></td>
-							<td th:text="${producto.stock}"></td>
-							<td th:text="${producto.fecha_alta}"></td>
-							<td th:text="${producto.fecha_alta}"></td>
-							<td th:text="${producto.impuesto}"></td>
-							<td th:text="${producto.imagen}"></td>
-							<li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark"
-															th:href="@{/carrito/add/}+${producto.id}">Add to cart</a>
-													</li>
-							
-
-						</tr>
-					</tbody>
-					</thead>
-				</table>
+	<div class="container" th:each="producto : ${producto}">
+		<div class="row mb-5">
+			<div class="col-lg-6">
+				<!-- PRODUCT SLIDER-->
+				 <div ><img class="card-img-top mb-5 mb-md-0" th:src="${producto.imagen}" alt="..." /></div>
 			</div>
-		</table>
+			<!-- PRODUCT DETAILS-->
+			<div class="col-lg-6">
+
+				<h1 th:text="${producto.nombre}"></h1>
+				<p class="text-muted lead" th:text="${producto.precio}"></p>
+				<p class="text-small mb-4" th:text="${producto.descripcion}"></p>
+
+
+				<div class="col-sm-3 pl-sm-0"><a
+						class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
+						th:href="@{/carrito/add/}+${producto.id}">Añadir a la cesta</a></div>
+
+				<ul class="list-unstyled small d-inline-block">
+
+					<li class="px-3 py-2 mb-1 bg-white text-muted"><strong
+							class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2"
+							th:text="${producto.id_categoria}"></a></li>
+					<li class="px-3 py-2 mb-1 bg-white text-muted"><strong
+							class="text-uppercase text-dark">Stock:</strong><a class="reset-anchor ml-2"
+							th:text="${producto.stock}"></a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- DETAILS TABS-->
+		<ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+			<li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description"
+					role="tab" aria-controls="description" aria-selected="true">Description</a></li>
+
+		</ul>
+		<div class="tab-content mb-5" id="myTabContent">
+			<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+				<div class="p-4 p-lg-5 bg-white">
+					<h6 class="text-uppercase">Product description </h6>
+					<p class="text-muted text-small mb-0" th:text="${producto.descripcion}"></p>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
-		<!-- JavaScript files-->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="vendor/lightbox2/js/lightbox.min.js"></script>
-		<script src="vendor/nouislider/nouislider.min.js"></script>
-		<script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
-		<script src="vendor/owl.carousel2/owl.carousel.min.js"></script>
-		<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
-		<script src="js/front.js"></script>
-		<script>
-			// ------------------------------------------------------- //
-			//   Inject SVG Sprite - 
-			//   see more here 
-			//   https://css-tricks.com/ajaxing-svg-sprite/
-			// ------------------------------------------------------ //
-			function injectSvgSprite(path) {
 
-				var ajax = new XMLHttpRequest();
-				ajax.open("GET", path, true);
-				ajax.send();
-				ajax.onload = function (e) {
-					var div = document.createElement("div");
-					div.className = 'd-none';
-					div.innerHTML = ajax.responseText;
-					document.body.insertBefore(div, document.body.childNodes[0]);
-				}
+
+	<!-- JavaScript files-->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/lightbox2/js/lightbox.min.js"></script>
+	<script src="/vendor/nouislider/nouislider.min.js"></script>
+	<script src="/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script src="/vendor/owl.carousel2/owl.carousel.min.js"></script>
+	<script src="/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+	<script src="js/front.js"></script>
+	<script>
+		// ------------------------------------------------------- //
+		//   Inject SVG Sprite - 
+		//   see more here 
+		//   https://css-tricks.com/ajaxing-svg-sprite/
+		// ------------------------------------------------------ //
+		function injectSvgSprite(path) {
+
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", path, true);
+			ajax.send();
+			ajax.onload = function (e) {
+				var div = document.createElement("div");
+				div.className = 'd-none';
+				div.innerHTML = ajax.responseText;
+				document.body.insertBefore(div, document.body.childNodes[0]);
 			}
-			// this is set to BootstrapTemple website as you cannot 
-			// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
-			// while using file:// protocol
-			// pls don't forget to change to your domain :)
-			injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+		}
+		// this is set to BootstrapTemple website as you cannot 
+		// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+		// while using file:// protocol
+		// pls don't forget to change to your domain :)
+		injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
 
-		</script>
-		<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-			integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	</script>
+	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	</div>
 	<div id="pie">
 		<footer th:replace="/fragmentos/footer::pie"></footer>

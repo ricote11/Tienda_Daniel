@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tienda.daniel.models.Detalles_pedido;
+import tienda.daniel.models.Pedidos;
 import tienda.daniel.repositories.Detalles_pedidoRepository;
 
 @Service
@@ -25,4 +26,8 @@ public class Detalles_pedidoService {
 	public void borrarDetalles(Detalles_pedido detallesPedido) {
 		detalles.delete(detallesPedido);
 	}
+	public Detalles_pedido getDetallesId(int id) {
+		return detalles.getById(id);
+	}
+	
 }

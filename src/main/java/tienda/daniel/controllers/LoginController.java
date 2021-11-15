@@ -29,6 +29,7 @@ public class LoginController {
 	 */
 	@GetMapping("")
 	public String loginIndex(Model model) {
+		model.addAttribute("usuarios", new Usuarios());
 		String mensaje = (String) model.asMap().get("mensaje");
 		model.addAttribute("mensaje", mensaje);
 		return "login";
@@ -40,7 +41,7 @@ public class LoginController {
 		System.out.println("Email: " + us.getEmail() + " Clave: " + us.getClave());
 		Base64 base64 = new Base64();
 		 if(bindingResult.hasErrors()) {
-			 model.addAttribute("usuario", us);
+			 model.addAttribute("usuarios", us);
 			 return "/login"; 
 			 
 		 }

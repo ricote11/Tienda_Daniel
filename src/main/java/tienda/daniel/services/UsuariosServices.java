@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tienda.daniel.models.Pedidos;
 import tienda.daniel.models.Productos;
 import tienda.daniel.models.Usuarios;
 import tienda.daniel.repositories.UsuariosRepository;
@@ -42,6 +43,9 @@ public class UsuariosServices {
 		rep.delete(user);
 	}
 
+	public List<Usuarios> buscarRol(int id_rol){
+		return rep.findById_rol(id_rol);
+	}
 	
 
 

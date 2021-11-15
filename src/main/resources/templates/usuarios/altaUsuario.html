@@ -83,6 +83,10 @@
 									<label class="text-small text-uppercase" for="apellido1">Cliente</label>
 									<input id="apellido1" type="radio" value="3" name="id_rol">
 								</div>
+								<div  th:if="${session.email == 'admin@admin.es'}" class="col-lg-12 form-group">
+									<label class="text-small text-uppercase" for="apellido1">Administrador</label>
+									<input id="apellido1" type="radio" value="1" name="id_rol">
+								</div >
 								</select>
 							</div>
 							<div th:unless="${session.id == 1}" class="col-lg-6 form-group">

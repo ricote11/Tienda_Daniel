@@ -20,13 +20,13 @@ public class Usuarios implements Serializable {
 	@NotBlank(message = "campo obligatorio")
 	private String email;
 
-	//@NotBlank(message = "campo obligatorio")
+	@NotBlank(message = "campo obligatorio")
 	private String clave;
 
-	//@NotBlank(message = "campo obligatorio")
+	// @NotBlank(message = "campo obligatorio")
 	private String nombre;
 
-	//@NotBlank(message = "campo obligatorio")
+	// @NotBlank(message = "campo obligatorio")
 	private String apellido1;
 
 	private String apellido2;
@@ -54,6 +54,16 @@ public class Usuarios implements Serializable {
 	public Usuarios(String email, String clave) {
 		this.clave = clave;
 		this.email = email;
+	}
+
+	public Usuarios(int id, @Email(message = "Formato no valido") @NotBlank(message = "campo obligatorio") String email,
+			String clave, String nombre, String apellido1) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.clave = clave;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
 	}
 
 	public Usuarios(int id_rol, String email, String clave, String nombre, String apellido1, String apellido2,

@@ -26,11 +26,7 @@
 							
 
 							
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="clave">Password</label>
-								<input type="password" class="form-control form-control-lg" th:field="*{clave}" id="clave" name="clave" 
-									placeholder="Enter your password">
-							</div>
+							
 							<div class="col-lg-6 form-group">
 								<label class="text-small text-uppercase" for="clave">Nombre</label>
 								<input class="form-control form-control-lg" id="clave" th:field="*{nombre}" name="nombre" type="text"
@@ -83,6 +79,11 @@
 								<label  class="text-small text-uppercase" for="email"></label >
 								<input type="hidden" class="form-control form-control-lg" th:field="*{email}" id="firstName" name="email"
 									placeholder="Enter your first email">
+							</div>
+							<div class="col-lg-6 form-group">
+								<label class="text-small text-uppercase" for="clave"></label>
+								<input type="hidden" class="form-control form-control-lg" th:field="*{clave}" id="clave" name="clave" 
+									placeholder="Enter your password">
 							</div>
 							<input type="submit" class="w-100 btn btn-lg btn-primary" name="btnSubmit"
 								value="Editar" />

@@ -28,13 +28,14 @@
 							<th>Precio total</th>
 							
 							<th>Nombre</th>
+							<th></th>
 						
 
 
 						</tr>
 					<tbody th:each="detalles : ${detalles}">
 					
-						
+						<tr>
 							<td th:text="${detalles.pedido}"></td>
 							<td th:text="${detalles.producto}"></td>
 							<td th:text="${detalles.precio_unidad}"></td>
@@ -43,6 +44,10 @@
 							<td th:text="${detalles.total}"></td>
 						
 							<td th:text="${detalles.nombre}"></td>
+							
+							<td th:if="${estado == 'Pendiente'}"> <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+								th:href="@{/pedidos/cancelarDetalle/}+${detalles.id}">Borrar Detalle<i
+									></i></a></div></td >
 						
 							
 							
