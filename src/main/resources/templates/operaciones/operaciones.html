@@ -29,6 +29,10 @@
 		<a class="referencias" data-bs-toggle="collapse" href="/configuracion/verConfiguraciones" role="button"
 			aria-expanded="false" aria-controls="multiCollapseExample1">Lista configuraciones </a>
 	</p>
+	<p >
+		<a class="referencias" data-bs-toggle="collapse" href="/proveedores/verProveedores" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista proveedores </a>
+	</p>
 	<h5 class="text-uppercase mb-4" id="operaciones">Altas</h5>
 	<p>
 		<a class="referencias" data-bs-toggle="collapse" href="/productos/altaProducto" role="button"
@@ -46,8 +50,13 @@
 		<a class="referencias" data-bs-toggle="collapse" href="/configuracion/verAltaCon" role="button"
 			aria-expanded="false" aria-controls="multiCollapseExample1">Alta configuraciones </a>
 	</p>
-	<p th:if="${session.id == 1}">
+	<p >
+		<a class="referencias" data-bs-toggle="collapse" href="/proveedores/alta" role="button"
+			aria-expanded="false" aria-controls="multiCollapseExample1">Alta proveedores </a>
+	</p>
 	<h5 class="text-uppercase mb-4" id="operaciones">Gestión de pedidos</h5>
+	<p th:if="${session.id == 1}">
+	
 		<a class="referencias" data-bs-toggle="collapse" href="/pedidos/verCancelaciones" role="button"
 			aria-expanded="false" aria-controls="multiCollapseExample1">Cancelar pedidos </a>
 	</p>

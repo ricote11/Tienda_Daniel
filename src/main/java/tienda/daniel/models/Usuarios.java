@@ -41,15 +41,7 @@ public class Usuarios implements Serializable {
 
 	private String dni;
 
-	// private String imagen;
 
-	/*
-	 * public String getImagen() { return imagen; }
-	 * 
-	 * 
-	 * 
-	 * public void setImagen(String imagen) { this.imagen = imagen; }
-	 */
 
 	public Usuarios(String email, String clave) {
 		this.clave = clave;

@@ -60,7 +60,7 @@ public class UsuariosController {
 			Base64 base64 = new Base64();
 
 			String encriptada = new String(base64.encode(usuario.getClave().getBytes()));
-			// System.out.println("encriptado: " + encriptada);
+			
 			usuario.setClave(encriptada);
 			serUsuarios.guardarUsuario(usuario);
 			//Email email = new Email();

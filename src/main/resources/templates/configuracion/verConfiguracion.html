@@ -20,7 +20,7 @@
 					<thead>
 						<tr>
 
-							<th>Id</th>
+							<th> </th>
 							<th>Clave</th>
 							<th>Valor</th>
 							<th>Tipo</th>
@@ -33,17 +33,19 @@
 					<tbody th:each="config : ${configuracion}">
 
 
-						<td th:text="${config.id}"></td>
+						<td></td>
 						<td th:text="${config.clave}"></td>
 						<td th:text="${config.valor}"></td>
 						<td th:text="${config.tipo}"></td>
 						<td>
 							<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-									th:href="@{/configuracion/editar/}+${config.id}">Editar Configuracion<i></i></a></div>
+									th:href="@{/configuracion/editar/}+${config.id}">Editar Configuracion<i></i></a>
+							</div>
 						</td>
 						<td>
 							<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-									th:href="@{/configuracion/borrar/}+${config.id}">Borrar Configuracion<i></i></a></div>
+									th:href="@{/configuracion/borrar/}+${config.id}" onclick="return alerta();">Borrar Configuracion<i></i></a>
+							</div>
 						</td>
 
 
@@ -90,6 +92,18 @@
 		// while using file:// protocol
 		// pls don't forget to change to your domain :)
 		injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+		function alerta() {
+			var mensaje;
+			var opcion = confirm("¿Quiere borrar este elemento?");
+			if (opcion == true) {
+				mensaje = "Sí";
+				return true
+			} else {
+				mensaje = "No";
+				return false;
+			}
+
+		}
 
 	</script>
 	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->

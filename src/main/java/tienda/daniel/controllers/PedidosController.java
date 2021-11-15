@@ -186,93 +186,93 @@ public class PedidosController {
 	    	//TABLAS
 		    
 			//Instanciamos una tabla de X columnas
-		    PdfPTable tabla = new PdfPTable(5);
+		    PdfPTable tablaPdf = new PdfPTable(5);
 		    Phrase texto = new Phrase("Fecha");
 			PdfPCell cabecera = new PdfPCell(texto);
 			cabecera.setBackgroundColor(BaseColor.YELLOW);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase("Metodo de pago");
 			cabecera = new PdfPCell(texto);
 			cabecera.setBackgroundColor(BaseColor.YELLOW);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase("Estado");
 			cabecera = new PdfPCell(texto);
 			cabecera.setBackgroundColor(BaseColor.YELLOW);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase("Numero de factura");
 			cabecera = new PdfPCell(texto);
 			cabecera.setBackgroundColor(BaseColor.YELLOW);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase("Total");
 			cabecera = new PdfPCell(texto);
 			cabecera.setBackgroundColor(BaseColor.YELLOW);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase(pedido.getFecha().toString());
 			cabecera = new PdfPCell(texto);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase(pedido.getMetodo_pago());
 			cabecera = new PdfPCell(texto);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase(pedido.getEstado());
 			cabecera = new PdfPCell(texto);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase(pedido.getNum_factura());
 			cabecera = new PdfPCell(texto);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
+			tablaPdf.addCell(cabecera);
 			
 			texto = new Phrase(""+pedido.getTotal());
 			cabecera = new PdfPCell(texto);
 			cabecera.setBorderWidth(1);
-			tabla.addCell(cabecera);
-		    documento.add(tabla);
+			tablaPdf.addCell(cabecera);
+		    documento.add(tablaPdf);
 		    
-		    PdfPTable tabla2 = new PdfPTable(5);
+		    PdfPTable tabla = new PdfPTable(5);
 		    Phrase texto2 = new Phrase("Nombre del producto");
 			PdfPCell cabecera2 = new PdfPCell(texto2);
 			cabecera2.setBackgroundColor(BaseColor.YELLOW);
 			cabecera2.setBorderWidth(1);
-			tabla2.addCell(cabecera2);
+			tabla.addCell(cabecera2);
 			
 			texto2 = new Phrase("Precio");
 			cabecera2 = new PdfPCell(texto2);
 			cabecera2.setBackgroundColor(BaseColor.YELLOW);
 			cabecera2.setBorderWidth(1);
-			tabla2.addCell(cabecera2);
+			tabla.addCell(cabecera2);
 			
 			texto2 = new Phrase("Unidades");
 			cabecera2 = new PdfPCell(texto2);
 			cabecera2.setBackgroundColor(BaseColor.YELLOW);
 			cabecera2.setBorderWidth(1);
-			tabla2.addCell(cabecera2);
+			tabla.addCell(cabecera2);
 			
 			texto2 = new Phrase("Impuesto");
 			cabecera2 = new PdfPCell(texto2);
 			cabecera2.setBackgroundColor(BaseColor.YELLOW);
 			cabecera2.setBorderWidth(1);
-			tabla2.addCell(cabecera2);
+			tabla.addCell(cabecera2);
 			
 			texto2 = new Phrase("Precio total");
 			cabecera2 = new PdfPCell(texto2);
 			cabecera2.setBackgroundColor(BaseColor.YELLOW);
 			cabecera2.setBorderWidth(1);
-			tabla2.addCell(cabecera2);
+			tabla.addCell(cabecera2);
 			
 			for(int i=0; i<lineas.size(); i++) {
 				Detalles_pedido linea = lineas.get(i);
@@ -281,31 +281,31 @@ public class PedidosController {
 				texto2 = new Phrase(producto.getNombre());
 				cabecera2 = new PdfPCell(texto2);
 				cabecera2.setBorderWidth(1);
-				tabla2.addCell(cabecera2);
+				tabla.addCell(cabecera2);
 				
 				texto2 = new Phrase(""+linea.getPrecio_unidad());
 				cabecera2 = new PdfPCell(texto2);
 				cabecera2.setBorderWidth(1);
-				tabla2.addCell(cabecera2);
+				tabla.addCell(cabecera2);
 				
 				texto2 = new Phrase(""+linea.getUnidades());
 				cabecera2 = new PdfPCell(texto2);
 				cabecera2.setBorderWidth(1);
-				tabla2.addCell(cabecera2);
+				tabla.addCell(cabecera2);
 				
 				texto2 = new Phrase(""+linea.getImpuesto());
 				cabecera2 = new PdfPCell(texto2);
 				cabecera2.setBorderWidth(1);
-				tabla2.addCell(cabecera2);
+				tabla.addCell(cabecera2);
 				
 				texto2 = new Phrase(""+linea.getTotal());
 				cabecera2 = new PdfPCell(texto2);
 				cabecera2.setBorderWidth(1);
-				tabla2.addCell(cabecera2);
+				tabla.addCell(cabecera2);
 			}
 		  logger.info("pdf creado");  
 		    
-	    	documento.add(tabla2);
+	    	documento.add(tabla);
 		    documento.close();
 		    writer.close();
 			
@@ -319,6 +319,5 @@ public class PedidosController {
 	}
 	
 
-	
 
 }

@@ -122,10 +122,7 @@ public class ProductosController {
         try {
         	WritableWorkbook w = Workbook.createWorkbook(fichero);
         	WritableSheet sheet = w.createSheet("Datos del producto", 0);
-        	/*
-        	Workbook wb = Workbook.getWorkbook(fichero);
-        	WritableWorkbook w = Workbook.createWorkbook(fichero, wb);
-        	*/
+        
         	jxl.write.Label cadena = new jxl.write.Label(0, i, "Id producto");
         	sheet.addCell(cadena);
         	jxl.write.Label cadena2 = new jxl.write.Label(1, i, "Nombre del producto");

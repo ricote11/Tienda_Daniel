@@ -34,7 +34,7 @@ public class LoginController {
 		model.addAttribute("mensaje", mensaje);
 		return "login";
 	}
-	// @ModelAttribute login
+	
 
 	@PostMapping("/log")
 	public String getLogged(Model model, @Valid @ModelAttribute  Usuarios us, BindingResult bindingResult, RedirectAttributes redirect, HttpSession sesion) {

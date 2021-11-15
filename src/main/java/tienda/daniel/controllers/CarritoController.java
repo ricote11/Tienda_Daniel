@@ -91,8 +91,6 @@ public class CarritoController {
 
 		}
 
-		// hasta aqui funciona
-		// sesion.setAttribute("carrito", carrito);
 
 		return "redirect:" + IndexController.rutaBase;
 
@@ -158,6 +156,7 @@ public class CarritoController {
 	@GetMapping("/comprar")
 	public String volverCarrito(Model model, HttpSession sesion) {
 		List<Detalles_pedido> carritoDetalles = (List<Detalles_pedido>) sesion.getAttribute("carrito");
+		
 		//List<Detalles_pedido> vacio = new ArrayList<Detalles_pedido>();
 		if (carritoDetalles.size() <= 0) {
 			return "redirect:" + IndexController.rutaBase;
@@ -167,7 +166,8 @@ public class CarritoController {
 
 				return "/login";
 			} else {
-
+			
+				
 				Usuarios user = (Usuarios) sesion.getAttribute("usuario");
 
 				Pedidos pedido = new Pedidos();
@@ -176,6 +176,7 @@ public class CarritoController {
 				pedido.setTotal(total);
 				pedido.setFecha(StringUtilities.getDefaultTimestamp());
 				pedido.setUsuario(user.getId());
+				
 
 				sesion.setAttribute("pedido", pedido);
 
@@ -215,6 +216,9 @@ public class CarritoController {
 		List<Detalles_pedido> carritoDetalles = (List<Detalles_pedido>) sesion.getAttribute("carrito");
 		for (int i = 0; i < carritoDetalles.size(); i++) {
 			carritoDetalles.get(i).setPedido(id);
+			Productos prod = service.getProductoFromId(carritoDetalles.get(i).getProducto());
+			prod.setStock(prod.getStock()-carritoDetalles.get(i).getUnidades());
+			service.guardarProducto(prod);
 
 			detallesSer.guardarDetalles(carritoDetalles.get(i));
 
