@@ -14,15 +14,15 @@
 	</p  >
 	<p >
 		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuariosClientes" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de Clientes </a>
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de clientes </a>
 	</p >
 		<p th:if="${session.id == 1}" >
 		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuariosEmpleados" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de Empleados </a>
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de empleados </a>
 	</p  >
 		<p  th:if="${session.email == 'admin@admin.es'}">
 		<a  class="referencias" data-bs-toggle="collapse" href="/usuarios/verUsuariosAdmin" role="button"
-			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de Admins </a>
+			aria-expanded="false" aria-controls="multiCollapseExample1">Lista de admins </a>
 	</p >
 
 	<p th:if="${session.id == 1}">
