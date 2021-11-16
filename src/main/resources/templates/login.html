@@ -32,11 +32,7 @@
 								placeholder="Enter your password">
 								<span th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">Errores</span>
 						</div>
-						<div class="col-lg-6 form-group">
-							<label class="text-small text-uppercase" for="vlave">Repite la contrseña</label>
-							<input class="form-control form-control-lg" id="clave2" name="clave2" type="password"
-								placeholder="Enter your password">
-						</div>
+						
 					<input type="submit" class="w-100 btn btn-lg btn-primary" name="btnSubmit" value="Entrar" onclick="return validacion();"/>
 					
 					
@@ -87,19 +83,7 @@
 			injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
 
 		</script>
-		<script type="text/javascript">
-		function validacion() {
-			var clave = document.getElementById('clave');
-			var clave2 = document.getElementById('clave2');
-			if(clave.value != clave2.value){
-				alert("Las contraseñas deben coincidir");
-				return false;
-			}else{
-				return true;
-				location.reload();
-			}
-		}
-	</script>
+		
 		<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
 			integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
