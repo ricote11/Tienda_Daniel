@@ -163,7 +163,7 @@ public class CarritoController {
 		}else
 		{	logger.info("El usuario no esta logueado");
 			if (sesion.getAttribute("email") == null) {
-
+				model.addAttribute("usuarios", new Usuarios());
 				return "/login";
 			} else {
 			
