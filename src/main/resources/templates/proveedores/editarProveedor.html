@@ -2,82 +2,193 @@
 <html>
 
 
-<head th:replace="/fragmentos/datos::datos">
+<head th:replace="/fragmentos/datos2::datos2">
 
 </head>
 
 <body>
 	<section th:replace="/fragmentos/menu::menu"></section>
-	<header th:replace="/fragmentos/cabecera::cabecera"></header>
-
-	<div class="page-holder">
-		<div class="container">
-
-			<!-- navbar-->
-
-			<!-- BILLING ADDRESS-->
-			<h2 class="h5 text-uppercase mb-4">Editar proveedores</h2>
-			<div class="row">
-				<div class="col-lg-8">
-					<form th:action="@{/proveedores/editar/nuevo}" th:object="${proveedor}" method="post">
-						<div class="row">
+	<div class="page">
+		<div class="page-content d-flex align-items-stretch">
+			<!-- Side Navbar -->
+			<nav class="side-navbar z-index-40">
 
 
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item active"><a class="sidebar-link" th:href="@{/Tienda_Daniel_Ricote_Mompo}">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#real-estate-1"> </use>
+							</svg>Catálogo </a></li>
+					<span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Tablas</span>
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/verProductosLista">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/verUsuariosClientes">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de clientes </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosEmpleados">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de empleados </a></li>
+
+					<li th:if="${session.email == 'admin@admin.es'}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosAdmin">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de admins </a></li>
+
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verConfiguraciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de configuraciones </a></li>
+
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/verProveedores">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de proveedores </a></li>
 
 
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="clave">Nombre</label>
-								<input class="form-control form-control-lg" id="clave" th:field="*{nombre}" name="clave"
-									type="text" placeholder="Enter your name">
-							</div>
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="apellido1">Direccion</label>
-								<input class="form-control form-control-lg" id="apellido1" th:field="*{direccion}"
-									name="valor" type="text" placeholder="Enter your firt surname">
-							</div>
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="apellido2">Localidad</label>
-								<input class="form-control form-control-lg" id="apellido2" th:field="*{localidad}"
-									name="tipo" type="text" placeholder="Enter your second surname">
-							</div>
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="apellido2">Provincia</label>
-								<input class="form-control form-control-lg" id="apellido2" th:field="*{provincia}"
-									name="tipo" type="text" placeholder="Enter your second surname">
-							</div>
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="apellido2">Telefono</label>
-								<input class="form-control form-control-lg" id="apellido2" th:field="*{telefono}"
-									name="tipo" type="text" placeholder="Enter your second surname">
-							</div>
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="apellido2">Cif</label>
-								<input class="form-control form-control-lg" id="apellido2" th:field="*{cif}"
-									name="tipo" type="text" placeholder="Enter your second surname">
-							</div>
-							<div class="col-lg-6 form-group">
-								<label class="text-small text-uppercase" for="apellido2">Email</label>
-								<input class="form-control form-control-lg" id="apellido2" th:field="*{email}"
-									name="tipo" type="text" placeholder="Enter your second surname">
-							</div>
-						<div class="col-lg-6 form-group">
-								<input type="hidden" class="form-control" id="id"  th:field="*{id}"
-									style="margin: 5px;" name="id" placeholder="Selecciona el rol" />
-							</div>
+
+				</ul><span
+					class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Formularios</span>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/altaProducto">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/altaUsuario">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de usuarios </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/productos/altaCategoria">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de categorías </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verAltaCon">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de configuraciones </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/alta">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de proveedores </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Gestión de
+					pedidos</span>
+				<ul class="list-unstyled py-4">
+					<li th:if="${session.id == 1}" class="sidebar-item"> <a class="sidebar-link"
+							href="/pedidos/verCancelaciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Cancelar pedidos </a></li>
+					<li class="sidebar-item"> <a class="sidebar-link" href="/pedidos/verListaPedidos">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Enviar pedidos </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Excel</span>
+				<ul class="list-unstyled py-4">
+
+					<li class="sidebar-item"> <a class="sidebar-link" href="/productos/excel">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#chart-1"> </use>
+							</svg>Descarga Excel </a></li>
+
+				</ul>
+			</nav>
+			<div class="content-inner w-100">
+				<!-- Page Header-->
+				<header class="bg-white shadow-sm px-4 py-3 z-index-20">
+					<div class="container-fluid px-0">
+						<h2 class="mb-0 p-1">Operaciones</h2>
+					</div>
+				</header>
 
 
-							<input type="submit" class="w-100 btn btn-lg btn-primary" name="btnSubmit" value="Editar" />
+				<div class="container">
 
-					</form>
+					<!-- navbar-->
+					<br>
+					<!-- BILLING ADDRESS-->
+					<h2 class="h5 text-uppercase mb-4">Editar proveedores</h2>
+					<div class="row">
+						<div class="col-lg-8">
+							<form th:action="@{/proveedores/editar/nuevo}" th:object="${proveedor}" method="post">
+								<div class="row">
 
+
+
+
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="clave">Nombre</label>
+										<input class="form-control form-control-lg" id="clave" th:field="*{nombre}"
+											name="clave" type="text" placeholder="Enter your name">
+									</div>
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="apellido1">Direccion</label>
+										<input class="form-control form-control-lg" id="apellido1"
+											th:field="*{direccion}" name="valor" type="text"
+											placeholder="Enter your firt surname">
+									</div>
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="apellido2">Localidad</label>
+										<input class="form-control form-control-lg" id="apellido2"
+											th:field="*{localidad}" name="tipo" type="text"
+											placeholder="Enter your second surname">
+									</div>
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="apellido2">Provincia</label>
+										<input class="form-control form-control-lg" id="apellido2"
+											th:field="*{provincia}" name="tipo" type="text"
+											placeholder="Enter your second surname">
+									</div>
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="apellido2">Telefono</label>
+										<input class="form-control form-control-lg" id="apellido2"
+											th:field="*{telefono}" name="tipo" type="text"
+											placeholder="Enter your second surname"  minlength="9" maxlength="13">
+									</div>
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="apellido2">Cif</label>
+										<input class="form-control form-control-lg" id="apellido2" th:field="*{cif}"
+											name="tipo" type="text" placeholder="Enter your second surname"  minlength="9" maxlength="13">
+									</div>
+									<div class="col-lg-6 form-group">
+										<label class="text-small text-uppercase" for="apellido2">Email</label>
+										<input class="form-control form-control-lg" id="apellido2" th:field="*{email}"
+											name="tipo" type="text" placeholder="Enter your second surname">
+									</div>
+									<div class="col-lg-6 form-group">
+										<input type="hidden" class="form-control" id="id" th:field="*{id}"
+											style="margin: 5px;" name="id" placeholder="Selecciona el rol" />
+									</div>
+
+									<br>
+									<input type="submit" class="w-100 btn btn-lg btn-primary" name="btnSubmit"
+										value="Editar" />
+
+							</form>
+
+
+
+						</div>
+
+
+					</div>
 
 
 				</div>
-
-
 			</div>
-
 		</div>
+
 
 		<!-- JavaScript files-->
 		<script src="vendor/jquery/jquery.min.js"></script>

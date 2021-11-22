@@ -13,7 +13,7 @@
 		<div class="row mb-5">
 			<div class="col-lg-6">
 				<!-- PRODUCT SLIDER-->
-				 <div ><img class="card-img-top mb-5 mb-md-0" th:src="${producto.imagen}" alt="..." /></div>
+				<div><img class="card-img-top mb-5 mb-md-0" th:src="${producto.imagen}" alt="..." /></div>
 			</div>
 			<!-- PRODUCT DETAILS-->
 			<div class="col-lg-6">
@@ -23,36 +23,55 @@
 				<p class="text-small mb-4" th:text="${producto.descripcion}"></p>
 
 
-				<div th:if="${producto.stock > 0}" class="col-sm-3 pl-sm-0"><a
+				<div th:if="${(producto.stock > 0 && session.id==3 ) || session.id == null}" class="col-sm-3 pl-sm-0"><a
 						class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-						th:href="@{/carrito/add/}+${producto.id}">Añadir a la cesta</a></div >
+						th:href="@{/carrito/add/}+${producto.id}">Añadir a la cesta</a></div>
 
 				<ul class="list-unstyled small d-inline-block">
 
 					<li class="px-3 py-2 mb-1 bg-white text-muted"><strong
-							class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ml-2"
+							class="text-uppercase text-dark">Categoría:</strong><a class="reset-anchor ml-2"
 							th:text="${producto.id_categoria}"></a></li>
 					<li class="px-3 py-2 mb-1 bg-white text-muted"><strong
 							class="text-uppercase text-dark">Stock:</strong><a class="reset-anchor ml-2"
 							th:text="${producto.stock}"></a></li>
+							<li class="px-3 py-2 mb-1 bg-white text-muted"><strong
+							class="text-uppercase text-dark">Media:</strong><a class="reset-anchor ml-2"
+							th:text="${media}"></a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- DETAILS TABS-->
-		<ul class="nav nav-tabs border-0" id="myTab" role="tablist">
-			<li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description"
-					role="tab" aria-controls="description" aria-selected="true">Description</a></li>
-
-		</ul>
-		<div class="tab-content mb-5" id="myTabContent">
-			<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-				<div class="p-4 p-lg-5 bg-white">
-					<h6 class="text-uppercase">Product description </h6>
-					<p class="text-muted text-small mb-0" th:text="${producto.descripcion}"></p>
-				</div>
-			</div>
-
-		</div>
+		 <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+            <li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descripción</a></li>
+            <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Valoraciones</a></li>
+          </ul>
+          <div class="tab-content mb-5" id="myTabContent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+              <div class="p-4 p-lg-5 bg-white">
+                <h6 class="text-uppercase" th:text="${producto.descripcion}" > </h6>
+               
+              </div>
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+              <div class="p-4 p-lg-5 bg-white">
+                <div class="row">
+                  <div class="col-lg-8">
+                    
+                      <div class="media-body ml-3" th:each="val : ${val}">
+                        <h6 class="mb-0 text-uppercase" th:text="'Valoración : '+  ${val.valoracion} + '/5'  "></h6>
+                      
+                        
+                        <p class="text-small mb-0 text-muted" th:text="'Comentario : ' + ${val.comentario}"></p>
+                      </div>
+                    </div>
+                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 	</div>
 
 

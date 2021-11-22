@@ -63,7 +63,7 @@
 													<li class="list-inline-item m-0 p-0"><a
 															class="btn btn-sm btn-outline-dark" href="#"><i
 																class="far fa-heart"></i></a></li>
-													<li th:if="${producto.stock > 0}" class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark"
+													<li th:if="${(producto.stock > 0 && session.id==3 ) || session.id == null}" class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark"
 															th:href="@{/carrito/add/}+${producto.id}">Añadir al carrito</a>
 													</li><li th:unless="${producto.stock > 0}" class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark"
 																th:href="@{/productos/verProducto/}+${producto.id}">Sin stock</a>

@@ -72,12 +72,12 @@
 							<div class="col-lg-6 form-group">
 								<label class="text-small text-uppercase" for="telefono">Telefono</label>
 								<input class="form-control form-control-lg" id="telefono" name="telefono" type="text"
-									placeholder="Enter your adress">
+									placeholder="Enter your adress" minlength="9" maxlength="13">
 							</div>
 							<div class="col-lg-6 form-group">
 								<label class="text-small text-uppercase" for="dni">DNI</label>
 								<input class="form-control form-control-lg" id="dni" name="dni" type="text"
-									placeholder="Enter your adress">
+									placeholder="Enter your adress"  minlength="9" maxlength="12">
 							</div>
 							<div th:if="${session.id == 1}" class="col-lg-6 form-group">
 								<div class="col-lg-12 form-group">

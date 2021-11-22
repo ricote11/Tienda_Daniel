@@ -2,16 +2,16 @@
 <html>
 
 <head th:replace="/fragmentos/datos::datos">
-	
-</head >
+
+</head>
 
 
 <body>
 
 	<section th:replace="/fragmentos/menu::menu"></section>
 	<header th:replace="/fragmentos/cabecera::cabecera"></header>
-	
-	
+
+
 	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
 		<h2 class="display-1">Detalles de pedido</h2>
 		<table class="table table-sm table-dark">
@@ -19,22 +19,23 @@
 				<table class="table align-middle">
 					<thead>
 						<tr>
-					
+
 							<th>Id pedido</th>
 							<th>Id del producto</th>
 							<th>Precio de la unidad</th>
 							<th>Unidades</th>
 							<th>Impuesto</th>
 							<th>Precio total</th>
-							
+
 							<th>Nombre</th>
 							<th></th>
-						
+							<th></th>
+
 
 
 						</tr>
 					<tbody th:each="detalles : ${detalles}">
-					
+
 						<tr>
 							<td th:text="${detalles.pedido}"></td>
 							<td th:text="${detalles.producto}"></td>
@@ -42,17 +43,23 @@
 							<td th:text="${detalles.unidades}"></td>
 							<td th:text="${detalles.impuesto}"></td>
 							<td th:text="${detalles.total}"></td>
-						
-							<td th:text="${detalles.nombre}"></td>
-							
-							<td th:if="${estado == 'Pendiente'}"> <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-								th:href="@{/pedidos/cancelarDetalle/}+${detalles.id}" onclick="return alerta();">Borrar Detalle<i
-									></i></a></div></td >
-						
-							
-							
 
-						</tr >
+							<td th:text="${detalles.nombre}"></td>
+
+							<td th:if="${estado == 'Pendiente'}">
+								<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+										th:href="@{/pedidos/cancelarDetalle/}+${detalles.id}"
+										onclick="return alerta();">Borrar Detalle<i></i></a></div>
+							</td>
+							<td >
+								<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+										th:href="@{/pedidos/valorar/}+${detalles.producto}">Valorar producto<i></i></a></div>
+							</td>
+
+
+
+
+						</tr>
 					</tbody>
 					</thead>
 				</table>
@@ -104,7 +111,7 @@
 			}
 
 		}
-		
+
 	</script>
 	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"

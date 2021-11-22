@@ -23,9 +23,11 @@ import tienda.daniel.models.Categorias;
 import tienda.daniel.models.Configuracion;
 import tienda.daniel.models.Productos;
 import tienda.daniel.models.Usuarios;
+import tienda.daniel.models.Valoraciones;
 import tienda.daniel.services.CategoriasService;
 import tienda.daniel.services.ProductosServices;
 import tienda.daniel.services.UsuariosServices;
+import tienda.daniel.services.ValoracionesService;
 
 @Controller
 @RequestMapping("/productos")
@@ -35,6 +37,9 @@ public class ProductosController {
 	private ProductosServices prod;
 	@Autowired
 	private CategoriasService cat;
+	
+	@Autowired
+	private ValoracionesService valSer;
 	
 	@GetMapping("/verProductosLista")
 	public String listarUsuarios(Model model) {
@@ -47,7 +52,26 @@ public class ProductosController {
 	@GetMapping("/verProducto/{id}")
 	public String listaDatos(Model model, HttpSession sesion, @PathVariable("id") int id) {
 		Productos producto = prod.getProductoFromId(id);
+		
+		List<Valoraciones> val = (List<Valoraciones>) valSer.getValoracionesFromProducto(id);
+		
+		if(val.size() != 0) {
+			double total=0.0;
+			for(int i=0; i<val.size(); i++) {
+				total += val.get(i).getValoracion();
+			}
+			double media = Math.round(total/val.size());
+			
+			model.addAttribute("media", media);
+			
+		}else {
+			model.addAttribute("media", 0.0);
+			
+		}
+		
+		
 		model.addAttribute("producto", producto);
+		model.addAttribute("val", val);
 		return "productos/verProductos";
 
 	}

@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Positive;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -12,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itextpdf.text.BaseColor;
@@ -29,11 +33,13 @@ import tienda.daniel.models.Detalles_pedido;
 import tienda.daniel.models.Pedidos;
 import tienda.daniel.models.Productos;
 import tienda.daniel.models.Usuarios;
+import tienda.daniel.models.Valoraciones;
 import tienda.daniel.services.ConfiguracionService;
 import tienda.daniel.services.Detalles_pedidoService;
 import tienda.daniel.services.PedidosService;
 import tienda.daniel.services.ProductosServices;
 import tienda.daniel.services.UsuariosServices;
+import tienda.daniel.services.ValoracionesService;
 import tienda.daniel.utils.PDFHeaderFooter;
 
 
@@ -54,6 +60,9 @@ public class PedidosController {
 	
 	@Autowired
 	UsuariosServices userSer;
+	
+	@Autowired
+	ValoracionesService valSer;
 	
 	
 	private static Logger logger = LogManager.getLogger(PedidosController.class);
@@ -147,6 +156,25 @@ public class PedidosController {
 		return "redirect:/pedidos/verPedidos";
 	}
 	
+	@GetMapping("/valorar/{id}")
+	public String valorar(@PathVariable("id") int id_producto, Model model)
+	{	
+		Productos producto = productosSer.getProductoFromId(id_producto);
+		model.addAttribute("productoVal",producto);
+
+		
+		return "pedidos/valoracion";
+	}
+
+	@PostMapping("/val")
+	public String val(@ModelAttribute Valoraciones val, Model model)
+	{	
+		valSer.guardarValoracion(val);
+		
+		return "redirect:/pedidos/verPedidos";
+	}
+	
+	
 	@GetMapping("/generarPdf/{id}")
 	public String generarPDF(@PathVariable("id") int id) {
 		Pedidos pedido = pedidosSer.getPedidoById(id);
@@ -177,7 +205,9 @@ public class PedidosController {
 		    //PARRAFOS
 			Paragraph paragraph = new Paragraph();
 	
-			paragraph.add(pedido.getNum_factura() +" "+user.getNombre()+" "+user.getApellido1());
+			paragraph.add("La factura con el número : "+" "+pedido.getNum_factura());
+			paragraph.add("\n");
+			paragraph.add("Nombre y apellidos : " +" "+user.getNombre()+" "+user.getApellido1());
 			paragraph.add("\n\n");
 		    
 	    	documento.add(paragraph);

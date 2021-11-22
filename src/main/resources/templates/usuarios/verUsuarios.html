@@ -2,69 +2,181 @@
 <html>
 
 
-<head th:replace="/fragmentos/datos::datos">
+<head th:replace="/fragmentos/datos2::datos2">
 
 </head>
 
 <body>
 	<section th:replace="/fragmentos/menu::menu"></section>
-	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+	<div class="page">
+		<div class="page-content d-flex align-items-stretch">
+			<!-- Side Navbar -->
+			<nav class="side-navbar z-index-40">
 
-	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
-		<h2 class="display-1">Lista de usuarios</h2>
-		<table class="table table-sm table-dark">
-			<div class="table-responsive">
-				<table class="table align-middle">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Id Rol</th>
-							<th>E-Mail</th>
-							<th>Clave</th>
-							<th>Nombre</th>
-							<th>Apellido 1</th>
-							<th>Apellido 2</th>
-							<th>Direccion</th>
-							<th>Localidad</th>
-							<th>Provincia</th>
-							<th>Telefono</th>
-							<th>DNI</th>
-							<th> </th>
-							<th> </th>
-							<th> </th>
 
-						</tr>
-					<tbody th:each="user : ${usuarios}">
-						<tr>
-							<td th:text="${user.id}"></td>
-							<td th:text="${user.id_rol}"></td>
-							<td th:text="${user.email}"></td>
-							<td th:text="${user.clave}"></td>
-							<td th:text="${user.nombre}"></td>
-							<td th:text="${user.apellido1}"></td>
-							<td th:text="${user.apellido2}"></td>
-							<td th:text="${user.direccion}"></td>
-							<td th:text="${user.localidad}"></td>
-							<td th:text="${user.provincia}"></td>
-							<td th:text="${user.telefono}"></td>
-							<td th:text="${user.dni}"></td>
-							<td>
-								<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-										th:href="@{/usuarios/editarList/}+${user.id}">Editar Usuario<i></i></a></div>
-							</td>
-							<td th:if="${session.id == 1}">
-								<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-										th:href="@{/usuarios/borrar/}+${user.id}" onclick="return alerta();">Borrar Usuario<i></i></a></div>
-							</td>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item active"><a class="sidebar-link" th:href="@{/Tienda_Daniel_Ricote_Mompo}">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#real-estate-1"> </use>
+							</svg>Catálogo </a></li>
+					<span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Tablas</span>
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/verProductosLista">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/verUsuariosClientes">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de clientes </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosEmpleados">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de empleados </a></li>
 
-						</tr>
-					</tbody>
-					</thead>
-				</table>
+					<li th:if="${session.email == 'admin@admin.es'}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosAdmin">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de admins </a></li>
+
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verConfiguraciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de configuraciones </a></li>
+
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/verProveedores">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de proveedores </a></li>
+
+
+
+				</ul><span
+					class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Formularios</span>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/altaProducto">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/altaUsuario">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de usuarios </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/productos/altaCategoria">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de categorías </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verAltaCon">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de configuraciones </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/alta">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de proveedores </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Gestión de
+					pedidos</span>
+				<ul class="list-unstyled py-4">
+					<li th:if="${session.id == 1}" class="sidebar-item"> <a class="sidebar-link"
+							href="/pedidos/verCancelaciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Cancelar pedidos </a></li>
+					<li class="sidebar-item"> <a class="sidebar-link" href="/pedidos/verListaPedidos">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Enviar pedidos </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Excel</span>
+				<ul class="list-unstyled py-4">
+
+					<li class="sidebar-item"> <a class="sidebar-link" href="/productos/excel">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#chart-1"> </use>
+							</svg>Descarga Excel </a></li>
+
+				</ul>
+			</nav>
+			<div class="content-inner w-100">
+				<!-- Page Header-->
+				<header class="bg-white shadow-sm px-4 py-3 z-index-20">
+					<div class="container-fluid px-0">
+						<h2 class="mb-0 p-1">Operaciones</h2>
+					</div>
+				</header>
+				<!-- Dashboard Counts Section-->
+
+				<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
+					<h2 class="display-1">Lista de usuarios</h2>
+					<table class="table table-sm table-dark">
+						<div class="table-responsive">
+							<table class="table align-middle">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Id Rol</th>
+										<th>E-Mail</th>
+										<th>Clave</th>
+										<th>Nombre</th>
+										<th>Apellido 1</th>
+										<th>Apellido 2</th>
+										<th>Direccion</th>
+										<th>Localidad</th>
+										<th>Provincia</th>
+										<th>Telefono</th>
+										<th>DNI</th>
+										<th> </th>
+										<th> </th>
+										<th> </th>
+
+									</tr>
+								<tbody th:each="user : ${usuarios}">
+									<tr>
+										<td th:text="${user.id}"></td>
+										<td th:text="${user.id_rol}"></td>
+										<td th:text="${user.email}"></td>
+										<td th:text="${user.clave}"></td>
+										<td th:text="${user.nombre}"></td>
+										<td th:text="${user.apellido1}"></td>
+										<td th:text="${user.apellido2}"></td>
+										<td th:text="${user.direccion}"></td>
+										<td th:text="${user.localidad}"></td>
+										<td th:text="${user.provincia}"></td>
+										<td th:text="${user.telefono}"></td>
+										<td th:text="${user.dni}"></td>
+										<td>
+											<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+													th:href="@{/usuarios/editarList/}+${user.id}">Editar
+													Usuario<i></i></a></div>
+										</td>
+										<td th:if="${session.id == 1}">
+											<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+													th:href="@{/usuarios/borrar/}+${user.id}"
+													onclick="return alerta();">Borrar Usuario<i></i></a></div>
+										</td>
+
+									</tr>
+								</tbody>
+								</thead>
+							</table>
+						</div>
+					</table>
+
+				</div>
+
+
 			</div>
-		</table>
-
+		</div>
 	</div>
+
+
 	</div>
 
 	<!-- JavaScript files-->

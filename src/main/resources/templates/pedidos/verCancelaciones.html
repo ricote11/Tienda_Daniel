@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head th:replace="/fragmentos/datos::datos">
+<head th:replace="/fragmentos/datos2::datos2">
 
 </head>
 
@@ -9,57 +9,168 @@
 <body>
 
 	<section th:replace="/fragmentos/menu::menu"></section>
-	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+	<div class="page">
+		<!-- Main Navbar-->
+		<div class="page-content d-flex align-items-stretch">
+			<!-- Side Navbar -->
+			<nav class="side-navbar z-index-40">
 
 
-	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
-		<h2 class="display-1">Lista de pedidos completa</h2>
-		<table class="table table-sm table-dark">
-			<div class="table-responsive">
-				<table class="table align-middle">
-					<thead>
-						<tr>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item active"><a class="sidebar-link" th:href="@{/Tienda_Daniel_Ricote_Mompo}">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#real-estate-1"> </use>
+							</svg>Catálogo </a></li>
+					<span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Tablas</span>
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/verProductosLista">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/verUsuariosClientes">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de clientes </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosEmpleados">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de empleados </a></li>
 
-							<th>Id_usuario</th>
-							<th>Fecha</th>
-							<th>Metodo de pago</th>
-							<th>Estado</th>
-							<th>Numero de la factura</th>
-							<th>Precio total</th>
-							<th></th>
-							
+					<li th:if="${session.email == 'admin@admin.es'}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosAdmin">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de admins </a></li>
 
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verConfiguraciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de configuraciones </a></li>
 
-
-
-						</tr>
-					<tbody th:each="pedidos : ${pedidos}">
-
-
-						<td th:text="${pedidos.usuario}"></td>
-						<td th:text="${pedidos.fecha}"></td>
-						<td th:text="${pedidos.metodo_pago}"></td>
-						<td th:text="${pedidos.estado}"></td>
-						<td th:text="${pedidos.num_factura}"></td>
-						<td th:text="${pedidos.total}"></td>
-						
-						<td>
-							<div   class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-									th:href="@{/pedidos/confirmarCanc/}+${pedidos.id}">Cancelar pedido<i></i></a></div>
-						</td>
-
-
-
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/verProveedores">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de proveedores </a></li>
 
 
 
-						</tr>
-					</tbody>
-					</thead>
-				</table>
+				</ul><span
+					class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Formularios</span>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/altaProducto">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/altaUsuario">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de usuarios </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/productos/altaCategoria">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de categorías </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verAltaCon">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de configuraciones </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/alta">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de proveedores </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Gestión de
+					pedidos</span>
+				<ul class="list-unstyled py-4">
+					<li th:if="${session.id == 1}" class="sidebar-item"> <a class="sidebar-link"
+							href="/pedidos/verCancelaciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Cancelar pedidos </a></li>
+					<li class="sidebar-item"> <a class="sidebar-link" href="/pedidos/verListaPedidos">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Enviar pedidos </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Excel</span>
+				<ul class="list-unstyled py-4">
+
+					<li class="sidebar-item"> <a class="sidebar-link" href="/productos/excel">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#chart-1"> </use>
+							</svg>Descarga Excel </a></li>
+
+				</ul>
+			</nav>
+			<div class="content-inner w-100">
+				<!-- Page Header-->
+				<header class="bg-white shadow-sm px-4 py-3 z-index-20">
+					<div class="container-fluid px-0">
+						<h2 class="mb-0 p-1">Operaciones</h2>
+					</div>
+				</header>
+				<br>
+				<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
+					<h2 class="display-1">Lista de pedidos completa</h2>
+					<table class="table table-sm table-dark">
+						<div class="table-responsive">
+							<table class="table align-middle">
+								<thead>
+									<tr>
+
+										<th>Id_usuario</th>
+										<th>Fecha</th>
+										<th>Metodo de pago</th>
+										<th>Estado</th>
+										<th>Numero de la factura</th>
+										<th>Precio total</th>
+										<th></th>
+
+
+
+
+
+									</tr>
+								<tbody th:each="pedidos : ${pedidos}">
+
+
+									<td th:text="${pedidos.usuario}"></td>
+									<td th:text="${pedidos.fecha}"></td>
+									<td th:text="${pedidos.metodo_pago}"></td>
+									<td th:text="${pedidos.estado}"></td>
+									<td th:text="${pedidos.num_factura}"></td>
+									<td th:text="${pedidos.total}"></td>
+
+									<td>
+										<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
+												th:href="@{/pedidos/confirmarCanc/}+${pedidos.id}">Cancelar
+												pedido<i></i></a></div>
+									</td>
+
+
+
+
+
+
+									</tr>
+								</tbody>
+								</thead>
+							</table>
+						</div>
+					</table>
+				</div>
+
+
+
 			</div>
-		</table>
+		</div>
 	</div>
+
+
 
 	<!-- JavaScript files-->
 	<script src="vendor/jquery/jquery.min.js"></script>

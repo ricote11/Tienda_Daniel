@@ -2,62 +2,178 @@
 <html>
 
 
-<head th:replace="/fragmentos/datos::datos">
+<head th:replace="/fragmentos/datos2::datos2">
 
 </head>
 
 <body>
 	<section th:replace="/fragmentos/menu::menu"></section>
-	<header th:replace="/fragmentos/cabecera::cabecera"></header>
+	<div class="page">
+		<div class="page-content d-flex align-items-stretch">
+			<!-- Side Navbar -->
+			<nav class="side-navbar z-index-40">
 
-	<div style="margin-right: 50px; margin-left: 50px; text-align:center; margin-top: 60px;">
-		<h2 class="display-1">Detalles de Productos</h2>
-		<table class="table table-sm table-dark">
-			<div class="table-responsive">
-				<table class="table align-middle">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Id Categoria</th>
-							<th>Nombre</th>
-							<th>Descripcion</th>
-							<th>Precio</th>
-							<th>Stock</th>
-							<th>Fecha alta</th>
-							<th>Fecha baja</th>
-							<th>Impuesto</th>
-							<th>Imagen</th>
-							<th> </th>
-							<th> </th>
 
-						</tr>
-					<tbody th:each="producto : ${producto}">
-						<tr>
-							<td th:text="${producto.id}"></td>
-							<td th:text="${producto.id_categoria}"></td>
-							<td th:text="${producto.nombre}"></td>
-							<td th:text="${producto.descripcion}"></td>
-							<td th:text="${producto.precio}"></td>
-							<td th:text="${producto.stock}"></td>
-							<td th:text="${producto.fecha_alta}"></td>
-							<td th:text="${producto.fecha_alta}"></td>
-							<td th:text="${producto.impuesto}"></td>
-							<td th:text="${producto.imagen}"></td>
-							<td>
-								<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-										th:href="@{/productos/editar/}+${producto.id}">Editar Producto<i></i></a></div>
-							</td>
-							<td th:if="${session.id == 1}">
-								<div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm"
-										th:href="@{/productos/borrar/}+${producto.id}" onclick="return alerta();">Borrar Producto<i></i></a></div>
-							</td>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item active"><a class="sidebar-link" th:href="@{/Tienda_Daniel_Ricote_Mompo}">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#real-estate-1"> </use>
+							</svg>Catálogo </a></li>
+					<span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Tablas</span>
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/verProductosLista">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/verUsuariosClientes">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de clientes </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosEmpleados">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de empleados </a></li>
 
-						</tr>
-					</tbody>
-					</thead>
-				</table>
+					<li th:if="${session.email == 'admin@admin.es'}" class="sidebar-item"><a class="sidebar-link"
+							href="/usuarios/verUsuariosAdmin">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de admins </a></li>
+
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verConfiguraciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de configuraciones </a></li>
+
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/verProveedores">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#portfolio-grid-1"> </use>
+							</svg>Tabla de proveedores </a></li>
+
+
+
+				</ul><span
+					class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Formularios</span>
+				<ul class="list-unstyled py-4">
+					<li class="sidebar-item"><a class="sidebar-link" href="/productos/altaProducto">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de productos </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/usuarios/altaUsuario">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de usuarios </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/productos/altaCategoria">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de categorías </a></li>
+					<li th:if="${session.id == 1}" class="sidebar-item"><a class="sidebar-link"
+							href="/configuracion/verAltaCon">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de configuraciones </a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="/proveedores/alta">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#survey-1"> </use>
+							</svg>Alta de proveedores </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Gestión de
+					pedidos</span>
+				<ul class="list-unstyled py-4">
+					<li th:if="${session.id == 1}" class="sidebar-item"> <a class="sidebar-link"
+							href="/pedidos/verCancelaciones">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Cancelar pedidos </a></li>
+					<li class="sidebar-item"> <a class="sidebar-link" href="/pedidos/verListaPedidos">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#imac-screen-1"> </use>
+							</svg>Enviar pedidos </a></li>
+
+				</ul>
+				</ul><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Excel</span>
+				<ul class="list-unstyled py-4">
+
+					<li class="sidebar-item"> <a class="sidebar-link" href="/productos/excel">
+							<svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+								<use xlink:href="#chart-1"> </use>
+							</svg>Descarga Excel </a></li>
+
+				</ul>
+			</nav>
+			<div class="content-inner w-100">
+				<!-- Page Header-->
+				<header class="bg-white shadow-sm px-4 py-3 z-index-20">
+					<div class="container-fluid px-0">
+						<h2 class="mb-0 p-1">Operaciones</h2>
+					</div>
+				</header>
+				<!-- Dashboard Counts Section-->
+
+
+
+				<section class="tables">
+					<div class="container-fluid">
+						<h2 class="display-1">Detalles de Productos</h2>
+						<table class="table table-sm table-dark">
+							<div class="table-responsive">
+								<table class="table align-middle">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Id Categoria</th>
+											<th>Nombre</th>
+											<th>Descripcion</th>
+											<th>Precio</th>
+											<th>Stock</th>
+											<th>Fecha alta</th>
+											<th>Fecha baja</th>
+											<th>Impuesto</th>
+											<th>Imagen</th>
+											<th> </th>
+											<th> </th>
+
+										</tr>
+									<tbody th:each="producto : ${producto}">
+										<tr>
+											<td th:text="${producto.id}"></td>
+											<td th:text="${producto.id_categoria}"></td>
+											<td th:text="${producto.nombre}"></td>
+											<td th:text="${producto.descripcion}"></td>
+											<td th:text="${producto.precio}"></td>
+											<td th:text="${producto.stock}"></td>
+											<td th:text="${producto.fecha_alta}"></td>
+											<td th:text="${producto.fecha_alta}"></td>
+											<td th:text="${producto.impuesto}"></td>
+											<td th:text="${producto.imagen}"></td>
+											<td>
+												<div class="col-md-6 text-md-right"><a
+														class="btn btn-outline-dark btn-sm"
+														th:href="@{/productos/editar/}+${producto.id}">Editar
+														Producto<i></i></a></div>
+											</td>
+											<td th:if="${session.id == 1}">
+												<div class="col-md-6 text-md-right"><a
+														class="btn btn-outline-dark btn-sm"
+														th:href="@{/productos/borrar/}+${producto.id}"
+														onclick="return alerta();">Borrar Producto<i></i></a></div>
+											</td>
+
+										</tr>
+									</tbody>
+									</thead>
+								</table>
+							</div>
+						</table>
+					</div>
+				</section>
 			</div>
-		</table>
+
+
+		</div>
 	</div>
 
 	<!-- JavaScript files-->
@@ -104,6 +220,39 @@
 			}
 
 		}
+	</script>
+	<script src="vendor2/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor2/chart.js/Chart.min.js"></script>
+	<script src="/vendor2/just-validate/js/just-validate.min.js"></script>
+	<script src="/vendor2/choices.js/public/assets/scripts/choices.min.js"></script>
+	<script src="/js2/charts-home.js"></script>
+	<!-- Main File-->
+	<script src="/js/front.js"></script>
+	<script>
+		// ------------------------------------------------------- //
+		//   Inject SVG Sprite - 
+		//   see more here 
+		//   https://css-tricks.com/ajaxing-svg-sprite/
+		// ------------------------------------------------------ //
+		function injectSvgSprite(path) {
+
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", path, true);
+			ajax.send();
+			ajax.onload = function (e) {
+				var div = document.createElement("div");
+				div.className = 'd-none';
+				div.innerHTML = ajax.responseText;
+				document.body.insertBefore(div, document.body.childNodes[0]);
+			}
+		}
+		// this is set to BootstrapTemple website as you cannot 
+		// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+		// while using file:// protocol
+		// pls don't forget to change to your domain :)
+		injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+
 	</script>
 	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
